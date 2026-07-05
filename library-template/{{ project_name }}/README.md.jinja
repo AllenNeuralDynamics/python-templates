@@ -1,0 +1,16 @@
+# {{ project_name }}
+
+![Version](https://img.shields.io/badge/version-{{ initial_version }}-black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![Interrogate](https://img.shields.io/badge/interrogate-100.0%25-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+![Python](https://img.shields.io/badge/python->={{ min_python_target_version }},<={{ max_python_target_version }}-blue?logo=python)
+{% if level_of_support == "Supported" -%}
+![support](https://img.shields.io/badge/support-supported-brightgreen) 
+{% else -%}
+![support](https://img.shields.io/badge/support-unsupported-red)
+{% endif %}
+
+{{ project_description }}
+

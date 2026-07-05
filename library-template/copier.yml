@@ -1,0 +1,88 @@
+project_name:
+  type: str
+  help: "What is your project's name?"
+
+package_name:
+  type: str
+  help: "What is the Python package name?"
+  default: "{{ project_name | lower | replace('-', '_') }}"
+
+initial_version:
+  type: str
+  help: "What is the initial package version?"
+  default: "0.0.0"
+
+project_created_date:
+  type: str
+  help: "Enter the project creation date"
+  default: "{{ '%Y-%m-%d' | strftime }}"
+
+author_name:
+  type: str
+  help: "Who is the author?"
+  default: "Neural Dynamics accelerator at the Allen Institute"
+ 
+project_url:
+  type: str
+  help: "What the url for your project?"
+  default: "https://github.com/AllenNeuralDynamics/{{ project_name }}"
+
+project_description:
+  type: str
+  help: "Please briefly describe the project."
+  validator: >
+    {% if not project_description %}
+      This field cannot be empty.
+    {% endif %}
+
+min_python_target_version:
+  type: str
+  help: "Select min Python target version (lower than 3.10 not recommended)."
+  choices:
+    - "3.6"
+    - "3.7"
+    - "3.8"
+    - "3.9"
+    - "3.10"
+    - "3.11"
+    - "3.12"
+    - "3.13"
+    - "3.14"
+  default: "3.12"
+
+max_python_target_version:
+  type: str
+  help: "Select max Python target version (lower than 3.10 not recommended)."
+  choices:
+    - "3.6"
+    - "3.7"
+    - "3.8"
+    - "3.9"
+    - "3.10"
+    - "3.11"
+    - "3.12"
+    - "3.13"
+    - "3.14"
+  default: "3.14"
+ 
+level_of_support:
+  type: str
+  help: "Planned level of support for this project"
+  default: "Supported"
+  choices:
+    - Supported
+    - Unsupported
+
+release_type:
+  type: str
+  help: "Please choose a release type. If PyPI, please contact an admin at Scientific Computing."
+  default: "GitHub"
+  choices:
+    - GitHub
+    - PyPI
+    - Other
+
+_exclude:
+  - "copier.yml"
+  - ".git"
+

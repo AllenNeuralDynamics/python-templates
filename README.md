@@ -1,0 +1,58 @@
+# python-templates
+
+### Who this is for
+
+- You are a scientist or engineer at the Allen Institute and want to scaffold a medium to large 
+large python project that adheres to our Coding Standards.
+
+### Who this might not be for
+
+- You are working on a small python project that is unlikely to be published and does not
+require a lot of overhead. You are welcome to use this template, but there may be a learning
+curve to be able to use all the tools that will be installed.
+
+- You are working on a set of Jupyter notebooks. This template is primarily for scaffolding
+python packages.
+
+## Usage
+
+### Prerequisites
+
+Please ensure the following tools are installed:
+
+- uv
+- git
+- GitHub CLI (gh) tool
+
+Install copier by running:
+```
+uv tool install copier
+```
+
+You now have everything you need.
+
+To create a directory locally
+```
+copier copy python-templates/library-template .
+```
+
+### Post installation - Creating a GitHub Repo
+
+- Run:
+```
+uv sync
+gh auth login
+git init --initial-branch dev
+git add .
+git commit -m "feat: initial commit"
+gh repo create AllenNeuralDynamics/<project-name> --<public,private,internal> --source=. --push
+git checkout main
+git push origin main
+git checkout dev
+```
+- Please add a Team to the list of collaborators who will help maintain your repository.
+- Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 
+require a Pull Request before merging.
+- Set `Automatically delete head branches` to `true` in the General Settings.
+- If publishing to PyPI, please contact an admin in Scientific Computing for your repo to be 
+added to the list of Trusted Publishers.
