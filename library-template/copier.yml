@@ -1,6 +1,8 @@
 project_name:
   type: str
   help: "What is your project's name?"
+  placeholder: "project-name"
+  validator: "{% if not project_name %}Project name cannot be empty{% endif %}"
 
 package_name:
   type: str
@@ -10,22 +12,22 @@ package_name:
 initial_version:
   type: str
   help: "What is the initial package version?"
-  default: "0.0.0"
+  placeholder: "0.0.0"
 
 project_created_date:
   type: str
   help: "Enter the project creation date"
-  default: "{{ '%Y-%m-%d' | strftime }}"
+  placeholder: "{{ '%Y-%m-%d' | strftime }}"
 
 author_name:
   type: str
   help: "Who is the author?"
-  default: "Neural Dynamics accelerator at the Allen Institute"
+  placeholder: "Neural Dynamics accelerator at the Allen Institute"
  
 project_url:
   type: str
-  help: "What the url for your project?"
-  default: "https://github.com/AllenNeuralDynamics/{{ project_name }}"
+  help: "What is the url for your project?"
+  placeholder: "https://github.com/AllenNeuralDynamics/{{ project_name }}"
 
 project_description:
   type: str
