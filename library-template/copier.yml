@@ -12,7 +12,7 @@ package_name:
 initial_version:
   type: str
   help: "What is the initial package version?"
-  placeholder: "0.0.0"
+  default: "0.0.0"
 
 project_created_date:
   type: str

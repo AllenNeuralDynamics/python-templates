@@ -3,7 +3,7 @@
 ### Who this is for
 
 - You are a scientist or engineer at the Allen Institute and want to scaffold a medium to large 
-large python project that adheres to our Coding Standards.
+python project that adheres to our [Coding Standards](https://docs.allenneuraldynamics.org/en/latest/policies_practices/software_practices.html).
 
 ### Who this might not be for
 
@@ -14,7 +14,6 @@ curve to be able to use all the tools that will be installed.
 - You are working on a set of Jupyter notebooks. This template is primarily for scaffolding
 python packages.
 
-## Usage
 
 ### Prerequisites
 
@@ -31,10 +30,23 @@ uv tool install copier
 
 You now have everything you need.
 
-To create a directory locally
+## Usage
+To use this template, you can get it directly from Github.
+```bash
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates <project-name>
 ```
+
+Or if you've cloned this repository and create a project from a local copy:
+```bash
 copier copy python-templates/library-template .
 ```
+
+To update an existing project to the latest template version:
+```bash
+cd <project-name>
+uvx copier update
+```
+Note: The update is from wherever the project was originally generated from. 
 
 ### Post installation - Creating a GitHub Repo
 

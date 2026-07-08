@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "{{ project_name }}"
 description = "{{ project_description }}"
 license = "MIT"
-requires-python = ">={{ min_python_target_version }},<={{ max_python_target_version }}"
+requires-python = ">={{ min_python_target_version }},<{{ (max_python_target_version.split('.')[0] ~ '.' ~ (max_python_target_version.split('.')[1] | int + 1)) }}"
 authors = [
     {name = "{{ author_name }}"}
 ]

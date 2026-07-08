@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "{{ min_python_target_version }}", "{{ max_python_target_version }}"]
+        python-version: [{% set min_parts = min_python_target_version.split('.') %}{% set max_parts = max_python_target_version.split('.') %}{% set min_minor = min_parts[1] | int %}{% set max_minor = max_parts[1] | int %}{% for minor in range(min_minor, max_minor + 1) %}"{{ min_parts[0] }}.{{ minor }}"{% if not loop.last %}, {% endif %}{% endfor %}]
     steps:
     - uses: actions/checkout@v6
 {% raw %}
