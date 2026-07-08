@@ -3,23 +3,30 @@ on:
   push:
     branches:
       - main
-# Remove the condition on line 60 to enable automated semantic version bumps.
-# Requires that svc-aindscicomp be added to the repo with "write" role.
 
-# Change line 66 from "if: false" to "if: true" to enable PyPI publishing.
-# Requires that the repo has been added as a Trusted Publisher in the PyPI.
-# Please submit a request to Scientific Computing to add the Trusted Publisher.
 jobs:
   update_badges:
     runs-on: ubuntu-latest
     continue-on-error: true
+    outputs:
+{% raw %}
+      token: ${{ steps.generate-token.outputs.token }}
+{% endraw %}
     steps:
+    - name: Generate a token
+      id: generate-token
+      uses: actions/create-github-app-token@v3
+      with:
+{% raw %}
+        client-id: ${{ vars.SEMANTIC_RELEASE_BOT_APP_ID }}
+        private-key: ${{ secrets.SEMANTIC_RELEASE_BOT_PRIVATE_KEY }}
+{% endraw %}
     - uses: actions/checkout@v6
       with:
 {% raw %}
         ref: ${{ env.DEFAULT_BRANCH }}
         fetch-depth: 0
-        token: ${{ secrets.SERVICE_TOKEN }}
+        token: ${{ steps.generate-token.outputs.token }}
 {% endraw %}
     - name: Set up Python {{ min_python_target_version }}
       uses: astral-sh/setup-uv@v7
@@ -69,11 +76,11 @@ jobs:
     uses: AllenNeuralDynamics/.github/.github/workflows/release-bump-version-uv.yml@main
     secrets:
 {% raw %}
-      repo-token: ${{ secrets.SERVICE_TOKEN }}
+      repo-token: ${{ needs.update_badges.outputs.token }}
 {% endraw %}
+{% if release_type == "PyPI" %}
   publish:
     needs: tag
-    if: false
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -93,3 +100,4 @@ jobs:
           uvx twine check dist/*
       - name: Publish on PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+{% endif %}
