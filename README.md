@@ -58,7 +58,7 @@ git init --initial-branch dev
 git add .
 git commit -m "feat: initial commit"
 gh repo create AllenNeuralDynamics/<project-name> --<public,private,internal> --source=. --push
-git checkout main
+git checkout -b main
 git push origin main
 git checkout dev
 ```
@@ -66,5 +66,4 @@ git checkout dev
 - Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 
 require a Pull Request before merging.
 - Set `Automatically delete head branches` to `true` in the General Settings.
-- If publishing to PyPI, please contact an admin in Scientific Computing for your repo to be 
-added to the list of Trusted Publishers.
+- The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
