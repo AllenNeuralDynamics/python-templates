@@ -5,7 +5,7 @@ set -eu
 
 REPO="{{ project_url | replace('https://github.com/', '') | default('AllenNeuralDynamics/' + project_name, true) }}"
 DESCRIPTION="{{ project_description }}"
-VISIBILITY="internal"  # one of: public | private | internal
+VISIBILITY="{{ repo_visibility }}"
 SCRIPT_NAME=$(basename "$0")
 
 uv sync

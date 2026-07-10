@@ -92,6 +92,15 @@ release_type:
     - PyPI
     - Other
 
+repo_visibility:
+  type: str
+  help: "Will this repository be public or private?"
+  default: "private"
+  choices:
+    - public
+    - private
+    - internal
+
 _exclude:
   - "copier.yml"
   - ".git"
