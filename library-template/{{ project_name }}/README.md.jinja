@@ -14,3 +14,22 @@
 
 {{ project_description }}
 
+## Installation
+
+If you choose to clone the repository, you can install the package by running the following command from the root directory of the repository:
+
+```bash
+uv sync
+```
+
+## Development
+Please test your changes using linting and testing:
+```bash
+uv run interrogate --verbose # Checks docstring coverage
+uv run ruff check # Runs format checks
+uv run pytest # Check tests and test coverage 
+```
+
+## License
+
+This project is licensed under the {{ license }} License - see the [LICENSE](LICENSE) file for details.

@@ -31,10 +31,17 @@ uv tool install copier
 You now have everything you need.
 
 ## Usage
-To use this template, you can get it directly from Github.
+To use this template, you can get it directly from Github:
 ```bash
-uvx copier copy https://github.com/AllenNeuralDynamics/python-templates <project-name>
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/ <project-name>
 ```
+
+Or if you want to pick which git ref to copy from:
+```bash
+uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates <project-name>
+
+```
+Note that `--vcs-ref` flag accepts any git ref (a branch name, tag, or commit)
 
 Or if you've cloned this repository and create a project from a local copy:
 ```bash
@@ -48,22 +55,26 @@ uvx copier update
 ```
 Note: The update is from wherever the project was originally generated from. 
 
-### Post installation - Creating a GitHub Repo
+### Post installation
+## Creating a GitHub Repo
+The template is setup with a script to create a remote Github repository using the Github CLI (gh) too. 
 
-- Run:
-```
-uv sync
-gh auth login
-git init --initial-branch dev
-git add .
-git commit -m "feat: initial commit"
-gh repo create AllenNeuralDynamics/<project-name> --<public,private,internal> --source=. --push
-git checkout -b main
-git push origin main
-git checkout dev
-```
+Once your project has been created, open it and run the given script:
+```bash
+ sh setup_repo.sh
+ ```
+
 - Please add a Team to the list of collaborators who will help maintain your repository.
 - Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 
 require a Pull Request before merging.
 - Set `Automatically delete head branches` to `true` in the General Settings.
-- The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
+
+## PyPI Publishing 
+To publish your project to PyPI:
+- Go to your PyPI project: https://pypi.org/manage/project/<your-project-name>/settings/publishing/
+- Click "Add a publisher" (or "Add trusted publisher").
+    - Owner: `AllenNeuralDynamics`
+    - Repository name: <your-project-name>
+    - Workflow name: 'tag_and_publish.yml' (or the full path if prompted: `.github/workflows/tag_and_publish.yml`)
+    - Environment name: leave blank unless your workflow uses `environment` for publish job
+- Note: The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 

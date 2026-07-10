@@ -1,3 +1,11 @@
+template_type:
+  type: str
+  help: "Which template?"
+  choices:
+    library-template: library-template
+
+_subdirectory: "{{ template_type }}"
+
 project_name:
   type: str
   help: "What is your project's name?"
@@ -22,7 +30,7 @@ project_created_date:
 author_name:
   type: str
   help: "Who is the author?"
-  placeholder: "Neural Dynamics accelerator at the Allen Institute"
+  default: "Neural Dynamics accelerator at the Allen Institute"
  
 project_url:
   type: str
@@ -83,6 +91,15 @@ release_type:
     - GitHub
     - PyPI
     - Other
+
+repo_visibility:
+  type: str
+  help: "Will this repository be public or private?"
+  default: "private"
+  choices:
+    - public
+    - private
+    - internal
 
 _exclude:
   - "copier.yml"
