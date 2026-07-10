@@ -31,10 +31,17 @@ uv tool install copier
 You now have everything you need.
 
 ## Usage
-To use this template, you can get it directly from Github.
+To use this template, you can get it directly from Github:
 ```bash
-uvx copier copy https://github.com/AllenNeuralDynamics/python-templates <project-name>
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/
 ```
+
+Or if you want to pick which git ref to copy from:
+```bash
+uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates/library-template <project-name>
+
+```
+Note that `--vcs-ref` flag accepts any git ref (a branch name, tag, or commit)
 
 Or if you've cloned this repository and create a project from a local copy:
 ```bash
