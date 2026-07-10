@@ -30,7 +30,7 @@ project_created_date:
 author_name:
   type: str
   help: "Who is the author?"
-  placeholder: "Neural Dynamics accelerator at the Allen Institute"
+  default: "Neural Dynamics accelerator at the Allen Institute"
  
 project_url:
   type: str
