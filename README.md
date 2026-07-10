@@ -3,7 +3,7 @@
 ### Who this is for
 
 - You are a scientist or engineer at the Allen Institute and want to scaffold a medium to large 
-large python project that adheres to our Coding Standards.
+python project that adheres to our [Coding Standards](https://docs.allenneuraldynamics.org/en/latest/policies_practices/software_practices.html).
 
 ### Who this might not be for
 
@@ -14,7 +14,6 @@ curve to be able to use all the tools that will be installed.
 - You are working on a set of Jupyter notebooks. This template is primarily for scaffolding
 python packages.
 
-## Usage
 
 ### Prerequisites
 
@@ -31,10 +30,23 @@ uv tool install copier
 
 You now have everything you need.
 
-To create a directory locally
+## Usage
+To use this template, you can get it directly from Github.
+```bash
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates <project-name>
 ```
+
+Or if you've cloned this repository and create a project from a local copy:
+```bash
 copier copy python-templates/library-template .
 ```
+
+To update an existing project to the latest template version:
+```bash
+cd <project-name>
+uvx copier update
+```
+Note: The update is from wherever the project was originally generated from. 
 
 ### Post installation - Creating a GitHub Repo
 
@@ -46,7 +58,7 @@ git init --initial-branch dev
 git add .
 git commit -m "feat: initial commit"
 gh repo create AllenNeuralDynamics/<project-name> --<public,private,internal> --source=. --push
-git checkout main
+git checkout -b main
 git push origin main
 git checkout dev
 ```
@@ -54,5 +66,4 @@ git checkout dev
 - Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 
 require a Pull Request before merging.
 - Set `Automatically delete head branches` to `true` in the General Settings.
-- If publishing to PyPI, please contact an admin in Scientific Computing for your repo to be 
-added to the list of Trusted Publishers.
+- The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
