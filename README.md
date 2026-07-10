@@ -89,5 +89,5 @@ To publish your project to PyPI:
     - Owner: `AllenNeuralDynamics`
     - Repository name: <your-project-name>
     - Workflow name: 'tag_and_publish.yml' (or the full path if prompted: `.github/workflows/tag_and_publish.yml`)
-    - Environemnt name: leave blank unless your workflow uses `environment` for publish job
+    - Environment name: leave blank unless your workflow uses `environment` for publish job
 - Note: The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
