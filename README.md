@@ -57,25 +57,12 @@ Note: The update is from wherever the project was originally generated from.
 
 ### Post installation
 ## Creating a GitHub Repo
-The template is setup with a script to create a Github repo using the Github CLI (gh) too. 
+The template is setup with a script to create a remote Github repository using the Github CLI (gh) too. 
 
-Once your project has been created, open it and run: 
+Once your project has been created, open it and run the given script:
 ```bash
  sh setup_repo.sh
  ```
-
-Or if you'd prefer to create it manually, run:
-```
-uv sync
-gh auth login
-git init --initial-branch dev
-git add .
-git commit -m "feat: initial commit"
-gh repo create AllenNeuralDynamics/<project-name> --<public,private,internal> --source=. --push
-git checkout -b main
-git push origin main
-git checkout dev
-```
 
 - Please add a Team to the list of collaborators who will help maintain your repository.
 - Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 

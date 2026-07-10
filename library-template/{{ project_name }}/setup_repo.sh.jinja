@@ -6,6 +6,7 @@ set -eu
 REPO="{{ project_url | replace('https://github.com/', '') | default('AllenNeuralDynamics/' + project_name, true) }}"
 DESCRIPTION="{{ project_description }}"
 VISIBILITY="internal"  # one of: public | private | internal
+SCRIPT_NAME=$(basename "$0")
 
 uv sync
 gh auth login
@@ -21,3 +22,6 @@ git push origin main
 git checkout dev
 
 echo "Done. Repo created at https://github.com/$REPO"
+echo "Please setup branch protection rules for main and dev branches, and add collaborators as needed."
+
+rm -f "$SCRIPT_NAME"
