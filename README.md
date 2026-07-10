@@ -33,7 +33,7 @@ You now have everything you need.
 ## Usage
 To use this template, you can get it directly from Github:
 ```bash
-uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/ <project-name>
 ```
 
 Or if you want to pick which git ref to copy from:
