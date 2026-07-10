@@ -38,7 +38,7 @@ uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/
 
 Or if you want to pick which git ref to copy from:
 ```bash
-uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates/library-template <project-name>
+uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates <project-name>
 
 ```
 Note that `--vcs-ref` flag accepts any git ref (a branch name, tag, or commit)
@@ -55,9 +55,16 @@ uvx copier update
 ```
 Note: The update is from wherever the project was originally generated from. 
 
-### Post installation - Creating a GitHub Repo
+### Post installation
+## Creating a GitHub Repo
+The template is setup with a script to create a Github repo using the Github CLI (gh) too. 
 
-- Run:
+Once your project has been created, open it and run: 
+```bash
+ sh setup_repo.sh
+ ```
+
+Or if you'd prefer to create it manually, run:
 ```
 uv sync
 gh auth login
@@ -69,8 +76,18 @@ git checkout -b main
 git push origin main
 git checkout dev
 ```
+
 - Please add a Team to the list of collaborators who will help maintain your repository.
 - Make sure both a `main` branch and a `dev` branch are created with branch protection rules to 
 require a Pull Request before merging.
 - Set `Automatically delete head branches` to `true` in the General Settings.
-- The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
+
+## PyPI Publishing 
+To publish your project to PyPI:
+- Go to your PyPI project: https://pypi.org/manage/project/<your-project-name>/settings/publishing/
+- Click "Add a publisher" (or "Add trusted publisher").
+    - Owner: `AllenNeuralDynamics`
+    - Repository name: <your-project-name>
+    - Workflow name: 'tag_and_publish.yml' (or the full path if prompted: `.github/workflows/tag_and_publish.yml`)
+    - Environemnt name: leave blank unless your workflow uses `environment` for publish job
+- Note: The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 

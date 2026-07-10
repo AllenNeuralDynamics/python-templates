@@ -2,8 +2,7 @@ template_type:
   type: str
   help: "Which template?"
   choices:
-    Library: library-template
-    CLI app: cli-template
+    library-template: library-template
 
 _subdirectory: "{{ template_type }}"
 
