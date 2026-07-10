@@ -25,7 +25,7 @@ initial_version:
 project_created_date:
   type: str
   help: "Enter the project creation date"
-  placeholder: "YYYY-MM-DD"
+  default: "{{ '%Y-%m-%d' | strftime }}"
 
 author_name:
   type: str
