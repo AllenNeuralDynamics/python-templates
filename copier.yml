@@ -1,5 +1,11 @@
-_templates_suffix: .jinja
-_subdirectory: library-template
+template_type:
+  type: str
+  help: "Which template?"
+  choices:
+    Library: library-template
+    CLI app: cli-template
+
+_subdirectory: "{{ template_type }}"
 
 project_name:
   type: str
