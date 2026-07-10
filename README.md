@@ -74,7 +74,7 @@ To publish your project to PyPI:
 - Go to your PyPI project: https://pypi.org/manage/project/<your-project-name>/settings/publishing/
 - Click "Add a publisher" (or "Add trusted publisher").
     - Owner: `AllenNeuralDynamics`
-    - Repository name: <your-project-name>
+    - Repository name: <your-project-name> (needs to match the project_name in pyproject.toml)
     - Workflow name: 'tag_and_publish.yml' (or the full path if prompted: `.github/workflows/tag_and_publish.yml`)
     - Environment name: leave blank unless your workflow uses `environment` for publish job
 - Note: The template uses reusable workflows for update_badges and tag. Both use a Github App token. However, reusable workflows cannot currently be used as a workflow in a Trusted Publisher. 
