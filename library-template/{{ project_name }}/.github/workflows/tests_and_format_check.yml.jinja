@@ -1,0 +1,31 @@
+name: Run test and format checks
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  test_and_format_checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [{% set min_parts = min_python_target_version.split('.') %}{% set max_parts = max_python_target_version.split('.') %}{% set min_minor = min_parts[1] | int %}{% set max_minor = max_parts[1] | int %}{% for minor in range(min_minor, max_minor + 1) %}"{{ min_parts[0] }}.{{ minor }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+    steps:
+    - uses: actions/checkout@v6
+{% raw %}
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: astral-sh/setup-uv@v7
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: uv sync
+    - name: Check docstring coverage
+      run: uv run interrogate --verbose
+    - name: Run format checks
+      run: uv run ruff check
+    - name: Check tests and test coverage
+      run: uv run pytest
+{% endraw %}
+
