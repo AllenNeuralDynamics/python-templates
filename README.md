@@ -45,8 +45,10 @@ Note that `--vcs-ref` flag accepts any git ref (a branch name, tag, or commit)
 
 Or if you've cloned this repository and create a project from a local copy:
 ```bash
-copier copy python-templates/library-template .
+uvx copier copy python-templates .
 ```
+
+> **Note:** For all of the above, Copier creates a `<project_name>/` directory inside the target path, so run these copy commands from a parent/workspace directory — not from inside a pre-made project folder, or it nests as `<project_name>/<project_name>/`.
 
 To update an existing project to the latest template version:
 ```bash
