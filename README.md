@@ -31,21 +31,20 @@ uv tool install copier
 You now have everything you need.
 
 ## Usage
-To use this template, you can get it directly from Github:
+To use this template, get it directly from GitHub. Pass the path to your new project as the final argument. Copier creates that directory, renders the project into it, and writes the tracking file `.copier-answers.yml` inside it:
 ```bash
-uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/ .
+uvx copier copy https://github.com/AllenNeuralDynamics/python-templates/ path/to/my-new-project
 ```
 
 Or if you want to pick which git ref to copy from:
 ```bash
-uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates .
-
+uvx copier copy --vcs-ref <git ref> https://github.com/AllenNeuralDynamics/python-templates path/to/my-new-project
 ```
 Note that `--vcs-ref` flag accepts any git ref (a branch name, tag, or commit)
 
-Or if you've cloned this repository and create a project from a local copy:
+Or if you've cloned this repository and want to create a project from a local copy:
 ```bash
-copier copy python-templates/library-template .
+uvx copier copy python-templates path/to/my-new-project
 ```
 
 To update an existing project to the latest template version:
