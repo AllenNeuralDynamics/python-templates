@@ -1,0 +1,49 @@
+name: Test templates
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  render_and_check:
+    name: ${{ matrix.template }} (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template:
+          - library-template
+        python-version: ["3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Render template
+        run: >
+          uvx copier copy --defaults --trust --vcs-ref HEAD
+          --data template_type=${{ matrix.template }}
+          --data project_description="Rendered by the python-templates CI"
+          --data project_url=https://github.com/AllenNeuralDynamics/rendered-project
+          "$GITHUB_WORKSPACE" "$RUNNER_TEMP/rendered-project"
+      - name: Install dependencies
+        working-directory: ${{ runner.temp }}/rendered-project
+        run: uv sync
+      - name: Check docstring coverage
+        working-directory: ${{ runner.temp }}/rendered-project
+        run: uv run interrogate --verbose
+      - name: Run format checks
+        working-directory: ${{ runner.temp }}/rendered-project
+        run: uv run ruff check
+      - name: Check tests and test coverage
+        working-directory: ${{ runner.temp }}/rendered-project
+        run: uv run pytest
+      - name: Build docs
+        working-directory: ${{ runner.temp }}/rendered-project
+        run: |
+          uv sync --group docs
+          uv run sphinx-apidoc -o docs/source/ src
+          uv run sphinx-build -b html docs/source/ docs/build/html
