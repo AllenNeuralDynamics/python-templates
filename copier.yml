@@ -9,7 +9,7 @@ _subdirectory: "{{ template_type }}"
 project_name:
   type: str
   help: "What is your project's name?"
-  placeholder: "project-name"
+  default: "{{ _copier_conf.dst_path.parts[-1] }}"
   validator: "{% if not project_name %}Project name cannot be empty{% endif %}"
 
 package_name:
