@@ -54,6 +54,22 @@ uvx copier update
 ```
 Note: The update is from wherever the project was originally generated from. 
 
+## Template versioning
+
+All templates in this repository are versioned together using git tags (`vX.Y.Z`). Tags are created automatically
+by the [tag workflow](.github/workflows/tag.yml) when changes are merged to `main`, with the bump determined by
+[conventional commit](https://www.conventionalcommits.org/) messages (`fix:` → patch, `feat:` → minor, `BREAKING CHANGE:` → major).
+
+- When you run `copier copy` without `--vcs-ref`, Copier uses the **latest tag**, not the tip of `main`.
+- The tag a project was generated from is recorded as `_commit` in its `.copier-answers.yml` and shown in its README.
+  `copier update` uses this to compute the diff against the newer template version.
+- To pin a specific version, pass `--vcs-ref vX.Y.Z`.
+
+Because every template shares a single `copier.yml`, a single version for the repository is used rather than one per
+template. [CHANGELOG.md](CHANGELOG.md) records which templates changed in each release; every PR should add an entry
+under `## [Unreleased]` in the section for each affected template. After a tag is created, rename `[Unreleased]` to
+the new version in a follow-up PR.
+
 ### Post installation
 ## Creating a GitHub Repo
 The template is setup with a script to create a remote Github repository using the Github CLI (gh) too. 
