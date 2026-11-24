@@ -19,7 +19,7 @@ current_year = date.today().year
 project = Path(dirname(dirname(dirname(abspath(__file__))))).name
 copyright = f"{current_year}, {{ author_name }}"
 author = "{{ author_name }}"
-release = get_version()
+release = get_version("{{ project_name }}")
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
